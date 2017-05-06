@@ -6,6 +6,7 @@
   "repository": "https://github.com/hollowverse/commonpkg",
   "license": "Unlicense",
   "scripts": {
+    "preversion": "npm run build",
     "build": "node_modules/.bin/tsc",
     "build:dev": "node_modules/.bin/tsc --watch"
   },
