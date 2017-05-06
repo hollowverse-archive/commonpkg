@@ -8,7 +8,7 @@ It works with both npm and Yarn.
 Say you have two packages, `package-a` and `package-b`, where you want to share some common 
 `package.json` properties, like `scripts`, `dependencies`, etc.
 
-With `commonpkg`, to share these properties, create a 3rd package for your common properties, 
+To share these properties with `commonpkg`, you create a 3rd package for your common properties, 
 name it whatever, and put in it a `package.json` like the following:
 
 ```json
@@ -57,9 +57,6 @@ Now in your `package-a` or `package-b`, you can have a `package.json` like the f
   "description": "This is Package A",
   "repository": "https://github.com/my-project/package-a.git",
   "license": "Unlicense",
-  "scripts": {
-    "postinstall": "commonpkg updatePackageJson"
-  },
   "commonpkg": "my-common-config",
   "devDependencies": {
     "my-common-config": "my-common-config",
@@ -68,13 +65,11 @@ Now in your `package-a` or `package-b`, you can have a `package.json` like the f
 }
 ```
 
-Because you have a `postinstall` script, the command `commonpkg updatePackageJson` 
-will get executed automatically after you do `npm install`. This command tells the `commonpkg` tool 
-to look for the key `commonpkg` in the `package.json` of your `package-a`. 
+With that, after you do an `npm install` or a `yarn install` in your `package-a`, `commonpkg`
+will look for the key `commonpkg` in the `package.json` of your `package-a`. 
 This key points to the exact dependency which has your common `package.json`, in this case
-`my-common-config`. The `commonpkg` tool will then merge 
-`my-common-config/package.json` with `package-a/package.json` and it will execute 
-another `npm install` after the merge.
+`my-common-config`. `commonpkg` will then merge `my-common-config/package.json` with 
+`package-a/package.json` and install any new dependencies.
 
 Now you have a `package-a/package.json` that is up-to-date with your `my-common-config/package.json`.
 
@@ -102,18 +97,6 @@ in the `package.json` files of the User Package and the Common Package
 
 ### Required keys in User Package
 
-#### `scripts.postinstall`
-
-You need to have a `postinstall` script in the `package.json` of any User Package that looks like
-
-```json
-{
-  "scripts": {
-    "postinstall": "commonpkg updatePackageJson"
-  }
-}
-```
-
 #### `commonpkg`
 
 You need to have the key `commonpkg` at the root of your User Package `package.json` which
@@ -129,7 +112,7 @@ For example:
 
 #### `devDependencies.commonpkg` or `dependencies.commonpkg`
 
-You also need to add the npm module, `commonpkg`, as a `dependency` or 
+You also need to add the npm module `commonpkg` as a `dependency` or 
 `devDependency` of your User Package.
 
 #### `devDependencies.nameOfYourCommonPackage` or `dependencies.nameOfYourCommonPackage`
@@ -184,7 +167,8 @@ with other repositories such as
 The goal of `commonpkg` is to serve the requirements of the Hollowverse project. Unfortunately,
 we don't have the resources to fix bugs or implement features that don't affect us.
 
-However, `commonpkg` is a very simple tool. Check out its 
-[source code](https://github.com/hollowverse/commonpkg/tree/master/src). If you need to fix a bug
-or add a feature, feel free to open an issue to discuss it, and we'll be happy to provide
-pointers on how to approach it.
+However, `commonpkg` is not super complicated. Check out its 
+[source code](https://github.com/hollowverse/commonpkg/tree/master/src). 
+
+If you need to fix a bug or add a feature, feel free to open an issue to discuss it, 
+and we'll be happy to provide pointers on how to approach it.
