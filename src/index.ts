@@ -7,6 +7,10 @@ import * as minimist from 'minimist'
 import merge = require('lodash.merge')
 import pick = require('lodash.pick')
 
+if (process.env.commonpkgInstall === 'attempted') {
+  shelljs.exit(0)
+}
+
 const args = minimist(process.argv.slice(2))
 const pwd = process.cwd()
 const packageManager = fs.existsSync(`${pwd}/yarn.lock`) ? 'yarn' : 'npm'
@@ -30,9 +34,7 @@ if (
 
   fs.writeFileSync(packageJsonPath, `${JSON.stringify(userNewPackageJson, null, 2)}\n`)
 
-  if (process.env.commonpkgInstall !== 'attempted') {
-    shelljs.exec(`commonpkgInstall=attempted ${packageManager} install`)
-  }
+  shelljs.exec(`commonpkgInstall=attempted ${packageManager} install`)
 }
 
 shelljs.exit(0)
