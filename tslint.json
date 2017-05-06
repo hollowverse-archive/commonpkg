@@ -1,0 +1,6 @@
+{
+  "extends": "@hollowverse/common-config/tslint.json",
+  "rules": {
+    "no-require-imports": false
+  }
+}
