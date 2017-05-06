@@ -28,7 +28,7 @@ if (
   const shareableProperties = pick(theCommonPackagePackageJson, shareablePartsNames)
   const userNewPackageJson = merge(userPackageJson, shareableProperties)
 
-  fs.writeFileSync(packageJsonPath, JSON.stringify(userNewPackageJson, null, 2))
+  fs.writeFileSync(packageJsonPath, `${JSON.stringify(userNewPackageJson, null, 2)}\n`)
 
   if (process.env.commonpkgInstall !== 'attempted') {
     shelljs.exec(`commonpkgInstall=attempted ${packageManager} install`)

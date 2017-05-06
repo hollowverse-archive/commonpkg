@@ -9,7 +9,7 @@
     "postinstall": "commonpkg updatePackageJson",
     "preversion": "npm run build",
     "build": "node_modules/.bin/tsc",
-    "build:dev": "node_modules/.bin/tsc --watch",
+    "build/dev": "node_modules/.bin/tsc --watch",
     "lint": "tslint '**/*.t{s,sx}' -e '**/node_modules/**' --fix",
     "precommit": "lint-staged"
   },
