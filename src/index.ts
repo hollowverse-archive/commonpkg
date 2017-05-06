@@ -13,7 +13,7 @@ const packageManager = fs.existsSync(`${pwd}/yarn.lock`) ? 'yarn' : 'npm'
 const packageJsonPath = `${pwd}/package.json`
 const userPackageJson = require(packageJsonPath)
 const theCommonPackage = userPackageJson.commonpkg || userPackageJson.commonPackage
-const theCommonPackagePackageJson = require(`${pwd}/node_modules/${theCommonPackage}/package.json`)
+const theCommonPackagePackageJson = require(`${theCommonPackage}/package.json`)
 const command = args._[0]
 const shareablePartsNames = theCommonPackagePackageJson.commonpkgShare
 
