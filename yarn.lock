@@ -127,8 +127,8 @@ commander@^2.9.0:
     graceful-readlink ">= 1.0.0"
 
 commonpkg@^1.2.0:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/commonpkg/-/commonpkg-1.4.1.tgz#874907c38a5b821cc595133a9f9986891a1d660e"
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/commonpkg/-/commonpkg-1.5.0.tgz#fb252e362f2f28ae2113603bb9960d317d5b7573"
   dependencies:
     "@hollowverse/common-config" hollowverse/common-config
     "@types/lodash.merge" "^4.6.2"
