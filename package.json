@@ -1,6 +1,6 @@
 {
   "name": "commonpkg",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Share your common scripts, dependencies, and files between your repos",
   "main": "bin/index.js",
   "repository": "https://github.com/hollowverse/commonpkg",
