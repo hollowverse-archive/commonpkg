@@ -178,3 +178,13 @@ We use `commonpkg` to share common configurations and files which we keep in our
 [`common-config`](https://github.com/hollowverse/common-config) repository
 with other repositories such as 
 [`release-manager`](https://github.com/hollowverse/release-manager).
+
+## Contributing
+
+The goal of `commonpkg` is to serve the requirements of the Hollowverse project. Unfortunately,
+we don't have the resources to fix bugs or implement features that don't affect us.
+
+However, `commonpkg` is a very simple tool. Check out its 
+[source code](https://github.com/hollowverse/commonpkg/tree/master/src). If you need to fix a bug
+or add a feature, feel free to open an issue to discuss it, and we'll be happy to provide
+pointers on how to approach it.
