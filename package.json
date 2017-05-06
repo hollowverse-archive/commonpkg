@@ -24,11 +24,11 @@
     "lodash.merge": "^4.6.0",
     "lodash.pick": "^4.4.0",
     "minimist": "^1.2.0",
-    "shelljs": "^0.7.7"
+    "shelljs": "^0.7.7",
+    "commonpkg": "^1.2.0",
+    "@hollowverse/common-config": "hollowverse/common-config"
   },
   "devDependencies": {
-    "@hollowverse/common-config": "hollowverse/common-config",
-    "commonpkg": "^1.2.0",
     "husky": "^0.13.3",
     "lint-staged": "^3.4.0",
     "ts-node": "^3.0.3",
