@@ -4,10 +4,8 @@ import * as fs from 'fs'
 import * as minimist from 'minimist'
 
 // the following modules don't support ES6 module import, gotta use legacy import syntax
-/* tslint:disable:no-require-imports */
-import merge = require( 'lodash.merge' )
-import pick = require( 'lodash.pick' )
-/* tslint:enable:no-require-imports */
+import merge = require('lodash.merge')
+import pick = require('lodash.pick')
 
 const args = minimist(process.argv.slice(2))
 const pwd = process.cwd()

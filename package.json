@@ -6,9 +6,12 @@
   "repository": "https://github.com/hollowverse/commonpkg",
   "license": "Unlicense",
   "scripts": {
+    "postinstall": "commonpkg updatePackageJson",
     "preversion": "npm run build",
     "build": "node_modules/.bin/tsc",
-    "build:dev": "node_modules/.bin/tsc --watch"
+    "build:dev": "node_modules/.bin/tsc --watch",
+    "lint": "tslint '**/*.t{s,sx}' -e '**/node_modules/**' --fix",
+    "precommit": "lint-staged"
   },
   "bin": {
     "commonpkg": "bin/index.js"
@@ -21,10 +24,24 @@
     "lodash.merge": "^4.6.0",
     "lodash.pick": "^4.4.0",
     "minimist": "^1.2.0",
-    "shelljs": "^0.7.7",
-    "ts-node": "^3.0.4",
-    "tslint": "^5.2.0",
+    "shelljs": "^0.7.7"
+  },
+  "devDependencies": {
+    "@hollowverse/common-config": "hollowverse/common-config",
+    "commonpkg": "^1.2.0",
+    "husky": "^0.13.3",
+    "lint-staged": "^3.4.0",
+    "ts-node": "^3.0.3",
+    "tslint": "^5.0.0",
     "tslint-config-standard": "^5.0.2",
-    "typescript": "^2.3.2"
-  }
+    "typescript": "^2.1.6"
+  },
+  "commonpkg": "@hollowverse/common-config",
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "yarn lint",
+      "git add"
+    ]
+  },
+  "pre-commit": "lint-staged"
 }
