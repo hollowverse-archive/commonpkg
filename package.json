@@ -14,13 +14,13 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "commonpkg": "^1.0.0",
     "lodash.defaultsdeep": "^4.6.0",
     "lodash.get": "^4.4.2",
     "lodash.pick": "^4.4.0",
     "shelljs": "^0.7.7"
   },
   "devDependencies": {
+    "commonpkg": "^1.0.0",
     "@hollowverse/common-config": "hollowverse/common-config",
     "@types/lodash.defaultsdeep": "^4.6.2",
     "@types/lodash.get": "^4.4.2",

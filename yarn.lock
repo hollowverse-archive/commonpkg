@@ -128,11 +128,11 @@ commander@^2.9.0:
   dependencies:
     graceful-readlink ">= 1.0.0"
 
-commonpkg@~1.0.0:
-  version "1.0.51"
-  resolved "https://registry.yarnpkg.com/commonpkg/-/commonpkg-1.0.51.tgz#5934dc65c427e1bc27585f7faee4466a929ef9c8"
+commonpkg@^1.0.0:
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/commonpkg/-/commonpkg-1.5.3.tgz#9ac4ca124f3da3008727a612224759285b0f536e"
   dependencies:
-    commonpkg "~1.0.0"
+    commonpkg "^1.0.0"
     lodash.defaultsdeep "^4.6.0"
     lodash.get "^4.4.2"
     lodash.pick "^4.4.0"
