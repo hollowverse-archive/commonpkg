@@ -1,6 +1,6 @@
 # commonpkg
 
-`commonpkg` allows you to share common `package.json` properties between different repositories.
+*commonpkg* allows you to share common `package.json` properties between different repositories.
 It works with both npm and Yarn.
 
 ## How it works
@@ -8,7 +8,7 @@ It works with both npm and Yarn.
 Say you have two packages, `package-a` and `package-b`, where you want to share some common 
 `package.json` properties, like `scripts`, `dependencies`, etc.
 
-To share these properties with `commonpkg`, you create a 3rd package for your common properties, 
+To share these properties with *commonpkg*, you create a 3rd package for your common properties, 
 name it whatever, and put in it a `package.json` like the following:
 
 ```json
@@ -65,10 +65,10 @@ Now in your `package-a` or `package-b`, you can have a `package.json` like the f
 }
 ```
 
-With that, after you do an `npm install` or a `yarn install` in your `package-a`, `commonpkg`
+With that, after you do an `npm install` or a `yarn install` in your `package-a`, *commonpkg*
 will look for the key `commonpkg` in the `package.json` of your `package-a`. 
 This key points to the exact dependency which has your common `package.json`, in this case
-`my-common-config`. `commonpkg` will then merge `my-common-config/package.json` with 
+`my-common-config`. *commonpkg* will then merge `my-common-config/package.json` with 
 `package-a/package.json` and install any new dependencies.
 
 Now you have a `package-a/package.json` that is up-to-date with your `my-common-config/package.json`.
@@ -86,13 +86,13 @@ npm i commonpkg --save-dev
 
 ## Documentation
 
-With `commonpkg` there are two types of packages, a User Package and a Common Package.
+With *commonpkg* there are two types of packages, a User Package and a Common Package.
  
 A **User Package** is a package that **inherits** the common `package.json`.
 
 A **Common Package** is a package that **contains** the common `package.json`.
 
-For `commonpkg` to work, there are some required keys that have to appear 
+For *commonpkg* to work, there are some required keys that have to appear 
 in the `package.json` files of the User Package and the Common Package
 
 ### Required keys in User Package
@@ -112,7 +112,7 @@ For example:
 
 #### `devDependencies.commonpkg` or `dependencies.commonpkg`
 
-You also need to add the npm module `commonpkg` as a `dependency` or 
+You also need to add the npm module *commonpkg* as a `dependency` or 
 `devDependency` of your User Package.
 
 #### `devDependencies.nameOfYourCommonPackage` or `dependencies.nameOfYourCommonPackage`
@@ -153,21 +153,21 @@ For example, your `.eslintrc` can be:
 }
 ```
 
-You don't even need `commonpkg` to do this.
+You don't even need *commonpkg* to do this.
 
 ## Real example
 
-We use `commonpkg` to share common configurations and files which we keep in our 
+We use *commonpkg* to share common configurations and files which we keep in our 
 [`common-config`](https://github.com/hollowverse/common-config) repository
 with other repositories such as 
 [`release-manager`](https://github.com/hollowverse/release-manager).
 
 ## Contributing
 
-The goal of `commonpkg` is to serve the requirements of the Hollowverse project. Unfortunately,
+The goal of *commonpkg* is to serve the requirements of the Hollowverse project. Unfortunately,
 we don't have the resources to fix bugs or implement features that don't affect us.
 
-However, `commonpkg` is not super complicated. Check out its 
+However, *commonpkg* is not super complicated. Check out its 
 [source code](https://github.com/hollowverse/commonpkg/tree/master/src). 
 
 If you need to fix a bug or add a feature, feel free to open an issue to discuss it, 
