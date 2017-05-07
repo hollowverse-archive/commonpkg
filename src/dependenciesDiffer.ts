@@ -19,18 +19,18 @@ export function dependenciesDiffer(
     const userNewProperty = userNewPackageJson[propertyToCompare]
 
     // If the property exists in the new `package.json` but not the old one,
-    // we need to install.
+    // that means the properties differ
     if (userNewProperty && !userProperty) {
       return true
     }
 
-    // If there's a new property, let's iterate through its keys.
+    // If there's a new property that exists on the current `package.json`,
+    // let's iterate through its keys and verify that they all exist in the current `package.json`
     if (userNewProperty) {
       for (let key in userNewProperty) {
         if (userNewProperty.hasOwnProperty(key)) {
-          // If there's a mismatch in the values of the new properties and the old properties,
-          // we need to install.
-          if (userNewProperty[key] !== userProperty[key]) {
+          // If the new property doesn't exist on the current `package.json`, return true
+          if (!userProperty[key]) {
             return true
           }
         }
@@ -38,6 +38,6 @@ export function dependenciesDiffer(
     }
   }
 
-  // If none of the above returned true, it means we don't require install.
+  // If none of the above returned true, it means dependencies don't differ.
   return false
 }

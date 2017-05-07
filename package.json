@@ -15,17 +15,17 @@
   },
   "dependencies": {
     "commonpkg": "^1.0.0",
-    "@hollowverse/common-config": "hollowverse/common-config",
-    "@types/lodash.get": "^4.4.2",
-    "@types/lodash.merge": "^4.6.2",
-    "@types/lodash.pick": "^4.4.2",
-    "@types/shelljs": "^0.7.1",
+    "lodash.defaultsdeep": "^4.6.0",
     "lodash.get": "^4.4.2",
-    "lodash.merge": "^4.6.0",
     "lodash.pick": "^4.4.0",
     "shelljs": "^0.7.7"
   },
   "devDependencies": {
+    "@hollowverse/common-config": "hollowverse/common-config",
+    "@types/lodash.defaultsdeep": "^4.6.2",
+    "@types/lodash.get": "^4.4.2",
+    "@types/lodash.pick": "^4.4.2",
+    "@types/shelljs": "^0.7.1",
     "husky": "^0.13.3",
     "lint-staged": "^3.4.0",
     "tslint": "^5.0.0",

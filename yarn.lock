@@ -2,19 +2,19 @@
 # yarn lockfile v1
 
 
-"@hollowverse/common-config@github:hollowverse/common-config", "@hollowverse/common-config@hollowverse/common-config":
+"@hollowverse/common-config@hollowverse/common-config":
   version "1.0.6"
   resolved "https://codeload.github.com/hollowverse/common-config/tar.gz/c69dbf7cc39ff5e74e0e950df3f531d5abdac999"
+
+"@types/lodash.defaultsdeep@^4.6.2":
+  version "4.6.2"
+  resolved "https://registry.yarnpkg.com/@types/lodash.defaultsdeep/-/lodash.defaultsdeep-4.6.2.tgz#083d0a87a10a47243565d03905b3cdc9b1dd0e96"
+  dependencies:
+    "@types/lodash" "*"
 
 "@types/lodash.get@^4.4.2":
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/@types/lodash.get/-/lodash.get-4.4.2.tgz#24d03d099d9df65656b724c38c616147ff7e2b13"
-  dependencies:
-    "@types/lodash" "*"
-
-"@types/lodash.merge@^4.6.2":
-  version "4.6.2"
-  resolved "https://registry.yarnpkg.com/@types/lodash.merge/-/lodash.merge-4.6.2.tgz#0f342234744a899748808412fbd39c150cab2da4"
   dependencies:
     "@types/lodash" "*"
 
@@ -128,18 +128,13 @@ commander@^2.9.0:
   dependencies:
     graceful-readlink ">= 1.0.0"
 
-commonpkg@^1.0.0:
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/commonpkg/-/commonpkg-1.5.1.tgz#621717371b316a7a07241827825d868120677b4f"
+commonpkg@~1.0.0:
+  version "1.0.51"
+  resolved "https://registry.yarnpkg.com/commonpkg/-/commonpkg-1.0.51.tgz#5934dc65c427e1bc27585f7faee4466a929ef9c8"
   dependencies:
-    "@hollowverse/common-config" hollowverse/common-config
-    "@types/lodash.get" "^4.4.2"
-    "@types/lodash.merge" "^4.6.2"
-    "@types/lodash.pick" "^4.4.2"
-    "@types/shelljs" "^0.7.1"
-    commonpkg "^1.0.0"
+    commonpkg "~1.0.0"
+    lodash.defaultsdeep "^4.6.0"
     lodash.get "^4.4.2"
-    lodash.merge "^4.6.0"
     lodash.pick "^4.4.0"
     shelljs "^0.7.7"
 
@@ -427,13 +422,13 @@ listr@^0.12.0:
     stream-to-observable "^0.1.0"
     strip-ansi "^3.0.1"
 
+lodash.defaultsdeep@^4.6.0:
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/lodash.defaultsdeep/-/lodash.defaultsdeep-4.6.0.tgz#bec1024f85b1bd96cbea405b23c14ad6443a6f81"
+
 lodash.get@^4.4.2:
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
-
-lodash.merge@^4.6.0:
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.0.tgz#69884ba144ac33fe699737a6086deffadd0f89c5"
 
 lodash.pick@^4.4.0:
   version "4.4.0"

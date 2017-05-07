@@ -5,9 +5,9 @@ import * as path from 'path'
 import {dependenciesDiffer} from './dependenciesDiffer'
 
 // the following modules don't support ES6 module import, gotta use legacy import syntax
-import merge = require('lodash.merge')
 import pick = require('lodash.pick')
 import get = require('lodash.get')
+import defaults = require('lodash.defaultsdeep')
 
 // This process should start at `node_modules/commonpkg/`.
 // If we go one level up, we should be in `node_modules`
@@ -83,7 +83,7 @@ if (!Array.isArray(shareablePartsNames)) {
 const shareableProperties = pick(theCommonPackagePackageJson, shareablePartsNames)
 
 // Merge the shared parts with the `package.json` of the User Package.
-const userNewPackageJson = merge({}, userPackageJson, shareableProperties)
+const userNewPackageJson = defaults({}, userPackageJson, shareableProperties)
 
 // Let's check if the dependencies of the two `package.json` files differ to determine
 // whether we'll need to perform a new install or not.
