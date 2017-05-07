@@ -1,7 +1,5 @@
 # commonpkg
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/hollowverse/commonpkg.svg)](https://greenkeeper.io/)
-
 `commonpkg` allows you to share common `package.json` properties between different repositories.
 It works with both npm and Yarn.
 
