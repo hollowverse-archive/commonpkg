@@ -1,28 +1,36 @@
 #!/usr/bin/env node
 import * as shelljs from 'shelljs'
 import * as fs from 'fs'
+import * as path from 'path'
+import {dependenciesDiffer} from './dependenciesDiffer'
 
 // the following modules don't support ES6 module import, gotta use legacy import syntax
 import merge = require('lodash.merge')
 import pick = require('lodash.pick')
 import get = require('lodash.get')
 
-// This process starts at `commonpkg/`. If we go two levels up, we find the User Package.
-shelljs.cd('../..')
-
-const pwd = process.cwd()
-const userPackageJsonPath = `${pwd}/package.json`
-const userPackageJson = require(userPackageJsonPath)
+// This process should start at `node_modules/commonpkg/`.
+// If we go one level up, we should be in `node_modules`
+shelljs.cd('..')
 
 if (
   // Don't re-run the script if it was already run by `commonpkg` previously in the same process
   process.env.commonpkgInstall === 'attempted' ||
 
-  // Also don't run the script if this is `commonpkg` using `commonpkg`.
-  userPackageJson.name === 'commonpkg'
+  // Also don't run the script if we're not inside `node_modules` at this point because that
+  // means this repo is running this script because we did `npm install` inside commonpkg repo
+  process.cwd().split(path.sep).pop() !== 'node_modules'
 ) {
   shelljs.exit(0)
 }
+
+// If we go one more level up, we'll be at the desired location: the User Package that depends on
+// commonpkg.
+shelljs.cd('..')
+
+const pwd = process.cwd()
+const userPackageJsonPath = `${pwd}/package.json`
+const userPackageJson = require(userPackageJsonPath)
 
 // Use Yarn if `yarn.lock` exists in the repo. Otherwise use npm.
 const packageManager = fs.existsSync(`${pwd}/yarn.lock`) ? 'yarn' : 'npm'
@@ -75,10 +83,16 @@ if (!Array.isArray(shareablePartsNames)) {
 const shareableProperties = pick(theCommonPackagePackageJson, shareablePartsNames)
 
 // Merge the shared parts with the `package.json` of the User Package.
-const userNewPackageJson = merge(userPackageJson, shareableProperties)
+const userNewPackageJson = merge({}, userPackageJson, shareableProperties)
+
+// Let's check if the dependencies of the two `package.json` files differ to determine
+// whether we'll need to perform a new install or not.
+const requiresNewInstall = dependenciesDiffer(userPackageJson, userNewPackageJson)
 
 // Write the new `package.json` to the User Package.
 fs.writeFileSync(userPackageJsonPath, `${JSON.stringify(userNewPackageJson, null, 2)}\n`)
 
-// Do another install with the new dependencies.
-shelljs.exec(`commonpkgInstall=attempted ${packageManager} install`)
+// Do another install with the new dependencies if necessary
+if (requiresNewInstall) {
+  shelljs.exec(`commonpkgInstall=attempted ${packageManager} install`)
+}
