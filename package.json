@@ -1,6 +1,6 @@
 {
   "name": "commonpkg",
-  "version": "1.5.4",
+  "version": "1.0.77",
   "description": "Share your common scripts, dependencies, and files between your repos",
   "main": "lib/index.js",
   "repository": "https://github.com/hollowverse/commonpkg",
@@ -20,7 +20,6 @@
     "shelljs": "^0.7.7"
   },
   "devDependencies": {
-    "commonpkg": "^1.0.0",
     "@hollowverse/common-config": "hollowverse/common-config",
     "@types/lodash.defaultsdeep": "^4.6.2",
     "@types/lodash.get": "^4.4.2",

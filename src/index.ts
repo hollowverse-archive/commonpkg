@@ -2,7 +2,7 @@
 import * as shell from 'shelljs'
 import * as fs from 'fs'
 import {dependenciesDiffer} from './dependenciesDiffer'
-
+import {exec} from 'child_process'
 // the following modules don't support ES6 module import, gotta use legacy import syntax
 import pick = require('lodash.pick')
 import get = require('lodash.get')
@@ -10,12 +10,17 @@ import defaults = require('lodash.defaultsdeep')
 
 // Don't re-run the script if it was already run by `commonpkg` previously in the same process
 if (process.env.commonpkgInstall === 'attempted') {
+  console.log('=\nFILE: index.ts\nLINE: 13\n=')
   shell.exit(0)
 }
 
+console.log('=\nFILE: index.ts\nLINE: 17\n=')
+
 // We need to wait for the original install process to exit before beginning commonpkg's work
 // because we need all dependencies to be installed first.
-process.on('exit', () => {
+
+exec('echo starting...').on('exit' , () => {
+  console.log('=\nFILE: index.ts\nLINE: 19\n=')
   // We need to find out our `pwd` first. It could be in one of two places
   // 1. `node_modules/commonpkg`
   // 2. `commonpkg/` (i.e. Me working on `commonpkg` and doing `npm install`)
@@ -24,6 +29,7 @@ process.on('exit', () => {
   const isNmCommonpkg = fs.existsSync(`${process.cwd()}/../../node_modules/commonpkg/package.json`)
 
   if (isNmCommonpkg) {
+    console.log('=\nFILE: index.ts\nLINE: 29\n=')
     shell.cd('../..')
   }
 
