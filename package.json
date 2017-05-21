@@ -6,16 +6,19 @@
   "repository": "https://github.com/hollowverse/commonpkg",
   "license": "Unlicense",
   "scripts": {
-    "postinstall": "node lib/index.js",
     "preversion": "npm run build",
     "build": "node_modules/.bin/tsc",
     "build/dev": "node_modules/.bin/tsc --watch",
-    "lint": "tslint '**/*.t{s,sx}' -e '**/node_modules/**' --fix",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "commonpkg": "commonpkg",
+    "lint": "tslint '**/*.t{s,sx}' -e '**/node_modules/**' --fix --project ./tsconfig.json --type-check"
+  },
+  "bin": {
+    "commonpkg": "lib/index.js"
   },
   "dependencies": {
-    "lodash.defaultsdeep": "^4.6.0",
     "lodash.get": "^4.4.2",
+    "lodash.merge": "^4.6.0",
     "lodash.pick": "^4.4.0",
     "shelljs": "^0.7.7"
   },
@@ -24,14 +27,16 @@
     "@hollowverse/common-config": "hollowverse/common-config",
     "@types/lodash.defaultsdeep": "^4.6.2",
     "@types/lodash.get": "^4.4.2",
+    "@types/lodash.merge": "^4.6.2",
     "@types/lodash.pick": "^4.4.2",
     "@types/shelljs": "^0.7.1",
     "husky": "^0.13.3",
     "lint-staged": "^3.4.0",
+    "ts-node": "^3.0.3",
     "tslint": "^5.0.0",
     "tslint-config-standard": "^5.0.2",
-    "typescript": "^2.1.6",
-    "ts-node": "^3.0.3"
+    "tslint-react": "^3.0.0",
+    "typescript": "^2.1.6"
   },
   "commonpkg": "@hollowverse/common-config",
   "lint-staged": {
