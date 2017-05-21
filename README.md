@@ -60,7 +60,7 @@ the root of your `package.json`.
 
 For example...
 
-```json
+```js
 {
   "name": "package-where-i-wanna-import-some-configs",
   "version": "1.0.0",
