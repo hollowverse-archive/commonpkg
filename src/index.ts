@@ -19,6 +19,6 @@ fs.writeFileSync(userPackageJsonPath, `${JSON.stringify(userNewPackageJson, null
 
 if (requiresNewInstall) {
   console.log(
-    '❗commonpkg has added new dependencies to your `package.json`. You need to reinstall your `node_modules`',
+    '❗commonpkg has modified the dependencies in your `package.json`. You need to reinstall your `node_modules`',
   )
 }
