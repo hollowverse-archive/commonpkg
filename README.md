@@ -4,13 +4,14 @@
 
 ## How to use it
 
-Put your common configurations in an empty repository or npm module. In the `package.json` of that repo, 
-add the key `commonpkgShare`. Add your common configurations under this key. For example...
+Publish your common configurations as an npm module. In the `package.json` of that module, 
+add the key `commonpkgShare`. Add any `package.json` properties you want to share 
+under this key. For example...
 
 ```json
 {
   "name": "my-common-config",
-  "version": "1.0.6",
+  "version": "1.0.0",
   "description": "Common configurations for MyProject repos",
   "repository": "https://github.com/my-project/common-config",
   "license": "Unlicense",
@@ -37,16 +38,13 @@ add the key `commonpkgShare`. Add your common configurations under this key. For
 }
 ```
 
-Now to share these configurations in your other packages, do the following:
+Now in the package where you want to inherit these configurations, do the following:
 
-#### Add your common configurations package as a dependency:
+#### Add your common configurations as a dependency:
 
 ```
-npm install my-github-username/my-common-config --save-dev
+npm install my-common-config --save-dev
 ```
-
-(With npm, you can install packages directly from GitHub. `my-github-username/my-common-config` is the 
-the repo where you keep your common configs)
 
 #### Install *commonpkg*
 
@@ -54,11 +52,11 @@ the repo where you keep your common configs)
 npm install commonpkg --save-dev
 ```
 
-#### Configure the `package.json` where you want to inherit common properties
+#### Configure the `package.json`
 
 1. Tell *commonpkg* the name of the package that has your configurations. You do that by adding the key `commonpkg` to
 the root of your `package.json`.
-1. Add `commonpkg` to your npm scripts, which you will use to run the *commonpkg* script
+1. Add `commonpkg` to your npm scripts. You will use `npm run commonpkg` to run the *commonpkg* script
 
 For example...
 
@@ -73,9 +71,9 @@ For example...
   "scripts": {
     "commonpkg": "commonpkg" // <== add a script like this
   },
-  "commonpkg": "my-common-config", // <== this key
+  "commonpkg": "my-common-config", // <== add this key to point to the package that has the configs
   "devDependencies": {
-    "my-common-config": "my-github-username/my-common-config",
+    "my-common-config": "^1.0.0",
     "commonpkg": "^2.0.0"
   }
 }
@@ -103,7 +101,7 @@ current `package.json`. After the merge, your `package.json` will look like this
   },
   "commonpkg": "my-common-config",
   "devDependencies": {
-    "my-common-config": "my-github-username/my-common-config",
+    "my-common-config": "^1.0.0",
     "commonpkg": "^2.0.0",
     "lint-staged": "^3.4.0",
     "ts-node": "^3.0.3",
@@ -122,7 +120,10 @@ current `package.json`. After the merge, your `package.json` will look like this
 ```
 
 If the dependencies between your old `package.json` and new `package.json` are different. *commonpkg* will remind
-you to reinstall your `node_modules`.
+you to reinstall your `node_modules`. 
+
+You can do `npm run commonpkg` whenever your common configurations
+change and *commonpkg* will pull in the updates.
 
 ## Bonus tip
 

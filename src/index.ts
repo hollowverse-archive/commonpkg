@@ -3,7 +3,6 @@ import * as fs from 'fs'
 import {dependenciesDiffer} from './dependenciesDiffer'
 
 // the following modules don't support ES6 module import, gotta use legacy import syntax
-import pick = require('lodash.pick')
 import get = require('lodash.get')
 import merge = require('lodash.merge')
 
@@ -20,6 +19,6 @@ fs.writeFileSync(userPackageJsonPath, `${JSON.stringify(userNewPackageJson, null
 
 if (requiresNewInstall) {
   console.log(
-    '❗: commonpkg has added new dependencies to your `package.json`. You need to reinstall your `node_modules`',
+    '❗commonpkg has added new dependencies to your `package.json`. You need to reinstall your `node_modules`',
   )
 }
