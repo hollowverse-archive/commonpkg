@@ -1,15 +1,11 @@
 # commonpkg
 
 *commonpkg* allows you to share common `package.json` properties between different repositories.
-It works with both npm and Yarn.
 
-## How it works
+## How to use it
 
-Say you have two packages, `package-a` and `package-b`, where you want to share some common 
-`package.json` properties, like `scripts`, `dependencies`, etc.
-
-To share these properties with *commonpkg*, you create a 3rd package for your common properties, 
-name it whatever, and put in it a `package.json` like the following:
+Put your common configurations in an empty repository or npm module. In the `package.json` of that repo, 
+add the key `commonpkgShare`. Add your common configurations under this key. For example...
 
 ```json
 {
@@ -18,12 +14,97 @@ name it whatever, and put in it a `package.json` like the following:
   "description": "Common configurations for MyProject repos",
   "repository": "https://github.com/my-project/common-config",
   "license": "Unlicense",
+  "commonpkgShare": {
+    "scripts": {
+      "lint": "tslint '**/*.t{s,sx}' -e '**/node_modules/**' --fix",
+      "precommit": "lint-staged"
+    },
+    "devDependencies": {
+      "lint-staged": "^3.4.0",
+      "ts-node": "^3.0.3",
+      "tslint": "^5.0.0",
+      "tslint-config-standard": "^5.0.2",
+      "typescript": "^2.1.6"
+    },
+    "lint-staged": {
+      "*.{ts,tsx}": [
+        "yarn lint",
+        "git add"
+      ]
+    },
+    "pre-commit": "lint-staged"
+  }
+}
+```
+
+Now to share these configurations in your other packages, do the following:
+
+#### Add your common configurations package as a dependency:
+
+```
+npm install my-github-username/my-common-config --save-dev
+```
+
+(With npm, you can install packages directly from GitHub. `my-github-username/my-common-config` is the 
+the repo where you keep your common configs)
+
+#### Install *commonpkg*
+
+```
+npm install commonpkg --save-dev
+```
+
+#### Configure the `package.json` where you want to inherit common properties
+
+1. Tell *commonpkg* the name of the package that has your configurations. You do that by adding the key `commonpkg` to
+the root of your `package.json`.
+1. Add `commonpkg` to your npm scripts, which you will use to run the *commonpkg* script
+
+For example...
+
+```json
+{
+  "name": "package-where-i-wanna-import-some-configs",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "description": "This is My Package",
+  "repository": "https://github.com/my-project/my-package.git",
+  "license": "Unlicense",
   "scripts": {
+    "commonpkg": "commonpkg" // <== add a script like this
+  },
+  "commonpkg": "my-common-config", // <== this key
+  "devDependencies": {
+    "my-common-config": "my-github-username/my-common-config",
+    "commonpkg": "^2.0.0"
+  }
+}
+```
+
+#### ✨ Run the magic command ✨
+
+Now run `npm run commonpkg` and *commonpkg* will merge the shared properties from `my-common-config` with your 
+current `package.json`. After the merge, your `package.json` will look like this:
+
+#### The results
+
+```json
+{
+  "name": "package-where-i-wanna-import-some-configs",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "description": "This is My Package",
+  "repository": "https://github.com/my-project/my-package.git",
+  "license": "Unlicense",
+  "scripts": {
+    "commonpkg": "commonpkg",
     "lint": "tslint '**/*.t{s,sx}' -e '**/node_modules/**' --fix",
     "precommit": "lint-staged"
   },
+  "commonpkg": "my-common-config",
   "devDependencies": {
-    "husky": "^0.13.3",
+    "my-common-config": "my-github-username/my-common-config",
+    "commonpkg": "^2.0.0",
     "lint-staged": "^3.4.0",
     "ts-node": "^3.0.3",
     "tslint": "^5.0.0",
@@ -36,110 +117,17 @@ name it whatever, and put in it a `package.json` like the following:
       "git add"
     ]
   },
-  "pre-commit": "lint-staged",
-  "commonpkgShare": [
-    "scripts", "devDependencies", "lint-staged", "pre-commit"
-  ]
+  "pre-commit": "lint-staged"
 }
 ```
 
-The `package.json` above contains the properties you want to share between your packages. 
-Notice the key `commonpkgShare`. This key specifies the exact properties that you want to make common. 
-The properties which are not specified here will not be shared.
-
-Now in your `package-a` or `package-b`, you can have a `package.json` like the following:
-
-```json
-{
-  "name": "package-a",
-  "version": "1.0.0",
-  "main": "dist/index.js",
-  "description": "This is Package A",
-  "repository": "https://github.com/my-project/package-a.git",
-  "license": "Unlicense",
-  "commonpkg": "my-common-config",
-  "devDependencies": {
-    "my-common-config": "my-common-config",
-    "commonpkg": "^1.0.0"
-  }
-}
-```
-
-With that, after you do an `npm install` or a `yarn install` in your `package-a`, *commonpkg*
-will look for the key `commonpkg` in the `package.json` of your `package-a`. 
-This key points to the exact dependency which has your common `package.json`, in this case
-`my-common-config`. *commonpkg* will then merge `my-common-config/package.json` with 
-`package-a/package.json` and install any new dependencies.
-
-Now you have a `package-a/package.json` that is up-to-date with your `my-common-config/package.json`.
-
-### tl;dr
-
-Merge the text of your `package.json` with the text of another `package.json` automatically
-when you do `npm install`.
-
-## Install
-
-```bash
-npm i commonpkg --save-dev
-```
-
-## Documentation
-
-With *commonpkg* there are two types of packages, a User Package and a Common Package.
- 
-A **User Package** is a package that **inherits** the common `package.json`.
-
-A **Common Package** is a package that **contains** the common `package.json`.
-
-For *commonpkg* to work, there are some required keys that have to appear 
-in the `package.json` files of the User Package and the Common Package
-
-### Required keys in User Package
-
-#### `commonpkg`
-
-You need to have the key `commonpkg` at the root of your User Package `package.json` which
-points to the name of your Common Package.
-
-For example:
-
-```json
-{
-  "commonpkg": "my-common-package"
-}
-```
-
-#### `devDependencies.commonpkg` or `dependencies.commonpkg`
-
-You also need to add the npm module *commonpkg* as a `dependency` or 
-`devDependency` of your User Package.
-
-#### `devDependencies.nameOfYourCommonPackage` or `dependencies.nameOfYourCommonPackage`
-
-You also need to add your Common Package as a `dependency` or `devDependency` of your User Package.
-
-### Required keys in Common Package
-
-The `package.json` of your Common Package can have any keys you want, but for those keys to be
-merged with User Packages, you need the following key:
-
-#### `commonpkgShare`
-
-This key is an array. For example:
-
-```json
-{
-  "commonpkgShare": [
-    "scripts", "devDependencies", "lint-staged", "pre-commit"
-  ]
-}
-```
+If the dependencies between your old `package.json` and new `package.json` are different. *commonpkg* will remind
+you to reinstall your `node_modules`.
 
 ## Bonus tip
 
-You can also use your Common Package to check-in files such as `.eslintrc`, `.babelrc`, etc and 
-extend those dot-files from your User Package, like so:
+You can also use the repo of your common config to check-in files such as `tslint.json`, `.eslintrc`, `.babelrc`, 
+etc and extend those config files from your main package, like so:
 
 For example, your `.eslintrc` can be: 
 
@@ -160,7 +148,7 @@ You don't even need *commonpkg* to do this.
 We use *commonpkg* to share common configurations and files which we keep in our 
 [`common-config`](https://github.com/hollowverse/common-config) repository
 with other repositories such as 
-[`release-manager`](https://github.com/hollowverse/release-manager).
+[`hollowverse`](https://github.com/hollowverse/hollowverse).
 
 ## Contributing
 

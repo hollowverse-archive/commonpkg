@@ -30,7 +30,7 @@ export function dependenciesDiffer(
       for (let key in userNewProperty) {
         if (userNewProperty.hasOwnProperty(key)) {
           // If the new property doesn't exist on the current `package.json`, return true
-          if (!userProperty[key]) {
+          if (userProperty[key] !== userNewProperty[key]) {
             return true
           }
         }
