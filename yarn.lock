@@ -6,27 +6,9 @@
   version "1.0.6"
   resolved "https://codeload.github.com/hollowverse/common-config/tar.gz/8d42f2e902985c550d8e12f0eb0e39a3e7294a58"
 
-"@types/lodash.defaultsdeep@^4.6.2":
-  version "4.6.2"
-  resolved "https://registry.yarnpkg.com/@types/lodash.defaultsdeep/-/lodash.defaultsdeep-4.6.2.tgz#083d0a87a10a47243565d03905b3cdc9b1dd0e96"
-  dependencies:
-    "@types/lodash" "*"
-
-"@types/lodash.get@^4.4.2":
-  version "4.4.2"
-  resolved "https://registry.yarnpkg.com/@types/lodash.get/-/lodash.get-4.4.2.tgz#24d03d099d9df65656b724c38c616147ff7e2b13"
-  dependencies:
-    "@types/lodash" "*"
-
 "@types/lodash.merge@^4.6.2":
   version "4.6.2"
   resolved "https://registry.yarnpkg.com/@types/lodash.merge/-/lodash.merge-4.6.2.tgz#0f342234744a899748808412fbd39c150cab2da4"
-  dependencies:
-    "@types/lodash" "*"
-
-"@types/lodash.pick@^4.4.2":
-  version "4.4.2"
-  resolved "https://registry.yarnpkg.com/@types/lodash.pick/-/lodash.pick-4.4.2.tgz#4a8966d7e19d8f82b2f9c04d900f9eb6c3551861"
   dependencies:
     "@types/lodash" "*"
 
@@ -34,15 +16,9 @@
   version "4.14.64"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.64.tgz#979cf3a3d4a368670840bf9b3e448dc33ffe84ee"
 
-"@types/node@*":
+"@types/node@^7.0.21":
   version "7.0.21"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-7.0.21.tgz#22a890f19b26cff9b6699b493dea1bcee4410da1"
-
-"@types/shelljs@^0.7.1":
-  version "0.7.1"
-  resolved "https://registry.yarnpkg.com/@types/shelljs/-/shelljs-0.7.1.tgz#30fe144e3bdd37c11c174445bc54190cb7992a45"
-  dependencies:
-    "@types/node" "*"
 
 ansi-escapes@^1.0.0:
   version "1.4.0"
@@ -134,12 +110,12 @@ commander@^2.9.0:
   dependencies:
     graceful-readlink ">= 1.0.0"
 
-commonpkg@^1.0.0:
-  version "1.5.5"
-  resolved "https://registry.yarnpkg.com/commonpkg/-/commonpkg-1.5.5.tgz#857834212bf63b09f79bcdd55726437dde554c93"
+commonpkg@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/commonpkg/-/commonpkg-2.0.0.tgz#6700a3a28adbb1bc1dc4f0b3e147be29adf53708"
   dependencies:
-    lodash.defaultsdeep "^4.6.0"
     lodash.get "^4.4.2"
+    lodash.merge "^4.6.0"
     lodash.pick "^4.4.0"
     shelljs "^0.7.7"
 
@@ -427,10 +403,6 @@ listr@^0.12.0:
     stream-to-observable "^0.1.0"
     strip-ansi "^3.0.1"
 
-lodash.defaultsdeep@^4.6.0:
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/lodash.defaultsdeep/-/lodash.defaultsdeep-4.6.0.tgz#bec1024f85b1bd96cbea405b23c14ad6443a6f81"
-
 lodash.get@^4.4.2:
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
@@ -464,8 +436,8 @@ lru-cache@^4.0.1:
     yallist "^2.0.0"
 
 make-error@^1.1.1:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/make-error/-/make-error-1.2.3.tgz#6c4402df732e0977ac6faf754a5074b3d2b1d19d"
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/make-error/-/make-error-1.3.0.tgz#52ad3a339ccf10ce62b4040b708fe707244b8b96"
 
 "minimatch@2 || 3", minimatch@^3.0.0, minimatch@^3.0.4:
   version "3.0.4"

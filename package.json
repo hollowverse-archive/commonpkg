@@ -17,19 +17,13 @@
     "commonpkg": "lib/index.js"
   },
   "dependencies": {
-    "lodash.get": "^4.4.2",
-    "lodash.merge": "^4.6.0",
-    "lodash.pick": "^4.4.0",
-    "shelljs": "^0.7.7"
+    "lodash.merge": "^4.6.0"
   },
   "devDependencies": {
-    "commonpkg": "^1.0.0",
     "@hollowverse/common-config": "hollowverse/common-config",
-    "@types/lodash.defaultsdeep": "^4.6.2",
-    "@types/lodash.get": "^4.4.2",
     "@types/lodash.merge": "^4.6.2",
-    "@types/lodash.pick": "^4.4.2",
-    "@types/shelljs": "^0.7.1",
+    "@types/node": "^7.0.21",
+    "commonpkg": "^2.0.0",
     "husky": "^0.13.3",
     "lint-staged": "^3.4.0",
     "ts-node": "^3.0.3",
